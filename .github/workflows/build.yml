@@ -21,6 +21,10 @@ jobs:
           sudo add-apt-repository -y ppa:longsleep/golang-backports
           sudo apt-get update
           sudo apt-get install -y golang-go
+      - name: Download sources
+        run: |
+          curl -L -o process-exporter.zip https://github.com/tada-team/process-exporter/archive/master.zip
+          unzip process-exporter.zip
       - name: Prepare template
         run: |
           for arch in i386 amd64; do
@@ -30,12 +34,9 @@ jobs:
             sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
           done
       - name: Go build
-        run: |
-          curl -L -o process-exporter.zip https://github.com/tada-team/process-exporter/archive/master.zip
-          unzip process-exporter.zip
           mkdir -p dist
           for arch in i386 amd64; do
-            GOARCH=i386 go build process-exporter-master
+            GOARCH=${arch} go build process-exporter-master
             mv -f process-exporter-master td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
             mv td-process-exporter_${{env.version}}_${arch} dist
