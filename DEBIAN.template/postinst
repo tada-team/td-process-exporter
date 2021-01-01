@@ -2,9 +2,8 @@
 set -ex
 
 cd /usr/local/src/process-exporter-master
-ls -lah .
 
-go get
+go build .
 make
 
 mv process-exporter /usr/bin/process-exporter
