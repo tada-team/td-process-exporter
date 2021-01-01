@@ -36,7 +36,11 @@ jobs:
       - name: Go build
           mkdir -p dist
           for arch in i386 amd64; do
-            GOARCH=${arch} go build process-exporter-master
+            if [ "$arch" -eq i386 ]; then
+              GOARCH=386 go build process-exporter-master
+            else
+              GOARCH=${arch} go build process-exporter-master
+            fi
             mv -f process-exporter-master td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
             mv td-process-exporter_${{env.version}}_${arch} dist
