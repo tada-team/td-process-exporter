@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,30 +19,24 @@ jobs:
       - name: Prepare template
         run: |
           for arch in i386 amd64; do
-            mkdir -p td-process-exporter_${{env.version}}_${arch}
+            mkdir -p td-process-exporter_${{env.version}}_${arch}/usr/bin
             cp -rv DEBIAN.template td-process-exporter_${{env.version}}_${arch}/DEBIAN
             sed -i "s/%VERSION%/${{env.version}}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
             sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
           done
-#      - name: Download lib
-#        run: |
-#          mkdir -p td-process-exporter_${{env.version}}/usr/local/src
-#          cd td-process-exporter_${{env.version}}/usr/local/src
-#          curl -L -o process-exporter.zip https://github.com/tada-team/process-exporter/archive/master.zip
-#          unzip process-exporter.zip
-#          rm process-exporter.zip
-#          mv process-exporter-master process-exporter
-#      - name: Go build
-#        run: |
-#          GOARCH=i386 go build process-exporter
-#          mv process-exporter usr/bin/process-exporter
-#          rm process-exporter.zip
-#      - name: Build .deb
-#        run: |
-#          dpkg-deb --build td-process-exporter_${{env.version}}
-#          mkdir -p dist
-#          mv td-process-exporter_${{env.version}}.deb dist
-#          ls -lah dist
+      - name: Go build
+        run: |
+          curl -L -o process-exporter.zip https://github.com/tada-team/process-exporter/archive/master.zip
+          unzip process-exporter.zip
+          mkdir -p dist
+          for arch in i386 amd64; do
+            GOARCH=i386 go build process-exporter-master
+            mv -f process-exporter-master td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
+            dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
+            mv td-process-exporter_${{env.version}}_${arch} dist
+          done
+          rm process-exporter-master.zip
+          ls -lah dist
 #      - name: Try install
 #        working-directory: dist
 #        run: |
