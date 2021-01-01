@@ -1,0 +1,7 @@
+Package: td-process-exporter
+Version: %VERSION%
+Maintainer: Tada.team <info@tada.team>
+Architecture: all
+Section: devel
+Description: custom github.com/tada-team/process-exporter build
+Depends: golang-go

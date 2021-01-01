@@ -1,0 +1,12 @@
+#!/bin/bash
+set -ex
+
+ls -lah /usr/local/src/
+cd /usr/local/src/process-exporter-master
+
+make
+mv process-exporter /usr/bin/process-exporter
+
+systemctl daemon-reload
+systemctl enable process-exporter
+systemctl start process-exporter
