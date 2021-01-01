@@ -34,6 +34,7 @@ jobs:
             sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
           done
       - name: Go build
+        run: |
           mkdir -p dist
           for arch in i386 amd64; do
             if [ "$arch" -eq i386 ]; then
