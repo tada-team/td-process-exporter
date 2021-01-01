@@ -1,10 +1,12 @@
 #!/bin/bash
 set -ex
 
-ls -lah /usr/local/src/
 cd /usr/local/src/process-exporter-master
+ls -lah .
 
+go get
 make
+
 mv process-exporter /usr/bin/process-exporter
 
 systemctl daemon-reload
