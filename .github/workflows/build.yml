@@ -53,7 +53,7 @@ jobs:
         run: |
           set -ex
           sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
-          systemctl list-unit-files | process-exporter
+          systemctl list-unit-files | grep process-exporter
           service start process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
