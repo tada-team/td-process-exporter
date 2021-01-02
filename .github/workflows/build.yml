@@ -30,23 +30,20 @@ jobs:
           done
       - name: Go build
         run: |
+          set -ex
           go version
           mkdir -p dist
           for arch in i386 amd64; do
             cd process-exporter-master
             go build .
-            mv -f process-exporter ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
+            ls -lah
+            mv -f process-exporter-master ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
             dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
             mv td-process-exporter_${{env.version}}_${arch} dist
           done
           rm process-exporter-master.zip
           ls -lah dist
-#            if [ "${arch}" == "i386" ]; then
-#              export GOARCH=386
-#            else
-#              export GOARCH=${arch}
-#            fi
 #      - name: Try install
 #        working-directory: dist
 #        run: |
