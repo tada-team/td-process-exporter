@@ -35,9 +35,8 @@ jobs:
           mkdir -p dist
           for arch in i386 amd64; do
             cd process-exporter-master
-            go build cmd/process-exporter
-            ls -lah cmd/process-exporter
-            mv -f cmd/process-exporter/process-exporter ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
+            go build cmd/process-exporter/main.go
+            mv -f main ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
             dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
             mv td-process-exporter_${{env.version}}_${arch} dist
