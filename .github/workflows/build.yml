@@ -31,15 +31,19 @@ jobs:
       - name: Go build
         run: |
           set -ex
-          go version
           mkdir -p dist
           for arch in i386 amd64; do
             cd process-exporter-master
+            if [ "$arch" == "i386" ]; then
+              export GOARCH=386
+            else
+              export GOARCH="$arch"
+            done
             go build cmd/process-exporter/main.go
             mv -f main ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
             dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
-            mv td-process-exporter_${{env.version}}_${arch} dist
+            mv td-process-exporter_${{env.version}}_${arch}.deb dist
           done
           ls -lah dist
       - name: Try install
