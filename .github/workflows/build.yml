@@ -45,7 +45,6 @@ jobs:
               export GOARCH=${arch}
             fi
             go build .
-#            make
             mv -f process-exporter ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
             dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
