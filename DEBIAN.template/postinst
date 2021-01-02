@@ -1,8 +1,9 @@
 #!/bin/bash
 set -ex
 
-ls -lah /usr/bin/process-exporter
+ls -lah /lib/systemd/system
+ls -lah /etc/systemd/system
 
 systemctl daemon-reload
-systemctl enable td-process-exporter
-systemctl start td-process-exporter
+systemctl enable process-exporter
+systemctl start process-exporter
