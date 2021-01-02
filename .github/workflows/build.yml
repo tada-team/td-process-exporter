@@ -38,7 +38,7 @@ jobs:
           set -ex
           mkdir -p dist
           for arch in i386 amd64; do
-            if [ "$arch" -eq "i386" ]; then
+            if [ "${arch}" == "i386" ]; then
               GOARCH=386 go build process-exporter-master
             else
               GOARCH=${arch} go build process-exporter-master
