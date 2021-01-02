@@ -28,6 +28,7 @@ jobs:
             cp -rv DEBIAN.template td-process-exporter_${{env.version}}_${arch}/DEBIAN
             sed -i "s/%VERSION%/${{env.version}}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
             sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
+            ls -lah td-process-exporter_${{env.version}}_${arch}
           done
       - name: Go build
         run: |
