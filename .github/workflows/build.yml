@@ -39,11 +39,6 @@ jobs:
           mkdir -p dist
           for arch in i386 amd64; do
             cd process-exporter-master
-#            if [ "${arch}" == "i386" ]; then
-#              export GOARCH=386
-#            else
-#              export GOARCH=${arch}
-#            fi
             go build .
             mv -f process-exporter ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
@@ -52,6 +47,11 @@ jobs:
           done
           rm process-exporter-master.zip
           ls -lah dist
+#            if [ "${arch}" == "i386" ]; then
+#              export GOARCH=386
+#            else
+#              export GOARCH=${arch}
+#            fi
 #      - name: Try install
 #        working-directory: dist
 #        run: |
