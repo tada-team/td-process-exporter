@@ -1,13 +1,6 @@
 #!/bin/bash
 set -ex
 
-cd /usr/local/src/process-exporter-master
-
-go build .
-make
-
-mv process-exporter /usr/bin/process-exporter
-
 systemctl daemon-reload
 systemctl enable process-exporter
 systemctl start process-exporter
