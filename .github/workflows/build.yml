@@ -41,22 +41,20 @@ jobs:
             dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
             mv td-process-exporter_${{env.version}}_${arch} dist
           done
-          rm process-exporter-master.zip
           ls -lah dist
-#      - name: Try install
-#        working-directory: dist
-#        run: |
-#          sudo apt-get install -y golang-go
-#          sudo dpkg -i td-process-exporter_${{env.version}}.deb
-#      - name: Install SSH Client
-#        uses: webfactory/ssh-agent@v0.4.1
-#        with:
-#          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-#      - name: Deploy
-#        uses: JamesIves/github-pages-deploy-action@3.7.1
-#        with:
-#          REPOSITORY_NAME: tada-team/ppa
-#          TARGET_FOLDER: td-process-exporter-dist
-#          FOLDER: dist
-#          SSH: true
-#          BRANCH: main
+      - name: Try install
+        working-directory: dist
+        run: |
+          sudo dpkg -i td-process-exporter_${{env.version}}_i386.deb
+      - name: Install SSH Client
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          REPOSITORY_NAME: tada-team/ppa
+          TARGET_FOLDER: td-process-exporter-dist
+          FOLDER: dist
+          SSH: true
+          BRANCH: main
