@@ -4,5 +4,5 @@ set -ex
 ls -lah /usr/bin/process-exporter
 
 systemctl daemon-reload
-systemctl enable process-exporter
-systemctl start process-exporter
+systemctl enable td-process-exporter
+systemctl start td-process-exporter
