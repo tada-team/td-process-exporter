@@ -38,7 +38,7 @@ jobs:
               export GOARCH=386
             else
               export GOARCH="$arch"
-            done
+            fi
             go build cmd/process-exporter/main.go
             mv -f main ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
