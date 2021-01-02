@@ -20,7 +20,8 @@ jobs:
         run: |
           sudo add-apt-repository -y ppa:longsleep/golang-backports
           sudo apt-get update
-          sudo apt-get install -y golang-go=1.15
+          sudo apt-get install golang-go
+          go version
       - name: Download sources
         run: |
           curl -L -o process-exporter.zip https://github.com/tada-team/process-exporter/archive/master.zip
