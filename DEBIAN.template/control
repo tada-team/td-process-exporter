@@ -4,4 +4,3 @@ Maintainer: Tada.team <info@tada.team>
 Architecture: %ARCH%
 Section: admin
 Description: custom github.com/tada-team/process-exporter build
-Depends: systemd

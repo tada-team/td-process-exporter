@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
-systemctl daemon-reload
-systemctl enable process-exporter
-systemctl start process-exporter
+#systemctl daemon-reload
+#systemctl enable process-exporter
+#systemctl start process-exporter
+service process-exporter start
