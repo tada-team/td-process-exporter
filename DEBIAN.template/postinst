@@ -1,9 +1,6 @@
 #!/bin/bash
 set -ex
 
-ls -lah /lib/systemd/system
-ls -lah /etc/systemd/system
-
 systemctl daemon-reload
 systemctl enable process-exporter
 systemctl start process-exporter
