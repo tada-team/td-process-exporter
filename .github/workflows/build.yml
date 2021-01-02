@@ -49,7 +49,7 @@ jobs:
       - name: Try install
         working-directory: dist
         run: |
-          sudo dpkg -i td-process-exporter_${{env.version}}_i386.deb
+          sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
         with:
