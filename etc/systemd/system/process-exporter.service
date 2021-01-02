@@ -3,6 +3,7 @@ Description = Process exporter
 After = network.target
 
 [Service]
+Restart=always
 ExecStart = /usr/bin/process-exporter -config.path /etc/process-exporter/conf.yaml -web.listen-address 127.0.0.1:7756 -web.telemetry-path /psmon/metrics
 
 [Install]
