@@ -1,5 +1,0 @@
-#!/bin/bash
-set -ex
-
-service process-exporter start
-service process-exporter status
