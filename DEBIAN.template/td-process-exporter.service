@@ -1,15 +1,11 @@
 [Unit]
-Description=OpenStack - network bridge
-Documentation=man:conjure-up(1)
-After=network-online.target
-Before=lxd.service
+Description = Process exporter
+After = network.target
 Requires=network-online.target
 
 [Service]
-Type=oneshot
-RemainAfterExit=yes
-ExecStart=/usr/lib/openstack/bridge.start
-ExecStop=/usr/lib/openstack/bridge.stop
+Restart=always
+ExecStart = /usr/bin/process-exporter -config.path /etc/process-exporter/conf.yaml -web.listen-address 127.0.0.1:7756 -web.telemetry-path /psmon/metrics
 
 [Install]
-WantedBy=multi-user.target
+WantedBy = multi-user.target
