@@ -1,6 +1,7 @@
 [Unit]
 Description = Process exporter
 After = network.target
+Requires=network-online.target
 
 [Service]
 Restart=always
