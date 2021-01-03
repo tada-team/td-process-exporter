@@ -4,8 +4,8 @@ After = network.target
 Requires=network-online.target
 
 [Service]
-Restart=always
 ExecStart = /usr/bin/process-exporter -config.path /etc/process-exporter/conf.yaml -web.listen-address 127.0.0.1:7756 -web.telemetry-path /psmon/metrics
+Restart=always
 
 [Install]
 WantedBy = multi-user.target
