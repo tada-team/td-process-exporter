@@ -1,15 +1,12 @@
 #!/usr/bin/make -f
 
-export DH_VERBOSE=1
-PKGDIR=debian/tmp
-
 %:
 	dh $@ --with systemd
 
 override_dh_systemd_enable:
     echo "debug: override_dh_systemd_enable"
-    dh_systemd_enable --name=process-exporter process-exporter.service
+    dh_systemd_enable -p td-process-exporter debian/process-exporter.service
 
 override_dh_systemd_start:
     echo "debug: override_dh_systemd_start"
-    dh_systemd_start --name=process-exporter process-exporter.service
+    dh_systemd_start -p td-process-exporter debian/process-exporter.service
