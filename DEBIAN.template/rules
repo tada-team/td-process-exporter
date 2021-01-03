@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+PKGDIR=debian/tmp
+
+%:
+	dh $@ --with systemd
+
+override_dh_installinit:
+	dh_systemd_enable -ptd-process-exporter --name=td-process-exporter td-process-exporter.service
+	dh_installinit -ptd-process-exporter --no-start --noscripts
+	dh_systemd_start -ptd-process-exporter --no-restart-on-upgrade
+
+override_dh_systemd_start:
+	echo "Not running dh_systemd_start"
