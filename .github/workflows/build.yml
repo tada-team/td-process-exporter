@@ -53,7 +53,8 @@ jobs:
         run: |
           set -ex
           sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
-          systemctl list-unit-files | grep process-exporter
+          echo "list units..."
+          sudo systemctl list-unit-files
           echo "try start..."
           service start process-exporter
       - name: Install SSH Client
