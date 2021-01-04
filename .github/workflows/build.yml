@@ -53,10 +53,8 @@ jobs:
           set -ex
           sudo apt-get install -y dh-systemd
           sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
-          echo "list units..."
-          sudo systemctl list-unit-files
           echo "try start..."
-          service start process-exporter
+          service status process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
         with:
