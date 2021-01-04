@@ -33,7 +33,7 @@ jobs:
       - name: Go build
         run: |
           set -ex
-          sudo apt-get install -y build-essential devscripts debhelper
+          sudo apt-get install -y devscripts debhelper dh-systemd
           mkdir -p dist
           for arch in i386 amd64; do
             cd process-exporter-master
@@ -48,6 +48,7 @@ jobs:
             echo "SKIP: dpkg-deb --build td-process-exporter_${{env.version}}_${arch}"
             cd td-process-exporter_${{env.version}}_${arch}
             ls -lah
+            ls -lah DEBIAN/changelog
             debuild -us -uc
             mv td-process-exporter_${{env.version}}_${arch}.deb ../dist
           done
