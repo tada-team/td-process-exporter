@@ -6,8 +6,8 @@ export DH_VERBOSE = 1
 
 build:
 	cd usr/src/process-exporter && go build -o process-exporter cmd/process-exporter/main.go
-	mkdir -p $(CURDIR)/debian/$(package)/usr/bin
-	mv -fv usr/src/process-exporter/process-exporter $(CURDIR)/debian/$(package)/usr/bin/
+	mkdir -p $(CURDIR)/debian/$(package)/usr/bin123
+	mv -fv usr/src/process-exporter/process-exporter $(CURDIR)/debian/$(package)/usr/bin123
 
 override_dh_golang:
 	echo "noop"
