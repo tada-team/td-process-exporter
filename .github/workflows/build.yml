@@ -43,6 +43,7 @@ jobs:
             cd td-process-exporter_${{env.version}}_${arch}
             dpkg-buildpackage --no-sign --target-arch ${arch}
             mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
+            cd ..
           done
           ls -lah dist
       - name: Try install
