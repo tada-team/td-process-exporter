@@ -5,8 +5,9 @@ export DH_VERBOSE = 1
 	dh $@ --with=systemd --with=golang
 
 build:
-	cd usr/src/process-exporter && go build cmd/process-exporter/main.go
-	mv -fv usr/src/process-exporter/main usr/bin/process-exporter
+	cd usr/src/process-exporter && go build cmd/process-exporter/main.go -o process-exporter
+	mv -fv usr/src/process-exporter/process-exporter usr/bin/
+	echo "pwd:" && pwd
 
 override_dh_golang:
 	echo "noop"
