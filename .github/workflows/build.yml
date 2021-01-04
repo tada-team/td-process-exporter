@@ -50,11 +50,8 @@ jobs:
       - name: Try install
         working-directory: dist
         run: |
-          set -ex
-          sudo apt-get install -y dh-systemd
           sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
-          echo "try start..."
-          service status process-exporter
+          service status td-process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
         with:
