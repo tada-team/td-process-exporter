@@ -25,10 +25,10 @@ jobs:
           for arch in amd64; do
             dest=td-process-exporter_${{env.version}}_${arch}
             mkdir -p ${dest}/usr/src ${dest}/usr/bin
-            # cp -rv etc ${dest}/etc
             cp -rv DEBIAN.template ${dest}/debian
             sed -i "s/%VERSION%/${{env.version}}/g" ${dest}/debian/*
             sed -i "s/%ARCH%/${arch}/g" ${dest}/debian/*
+            cp -r etc ${dest}/debian/etc
             cp -r process-exporter-master ${dest}/usr/src/process-exporter
             ls -lah ${dest}
           done
