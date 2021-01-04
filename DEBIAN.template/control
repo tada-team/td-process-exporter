@@ -1,8 +1,10 @@
-Package: td-process-exporter
-Version: %VERSION%
+Source: td-process-exporter
 Section: admin
 Priority: optional
-Architecture: %ARCH%
 Maintainer: Tada.team <info@tada.team>
-Description: custom github.com/tada-team/process-exporter build
 Build-Depends: debhelper (>=10), dh-systemd
+Standards-Version: 3.9.4
+
+Package: td-process-exporter
+Architecture: %ARCH%
+Description: custom github.com/tada-team/process-exporter build
