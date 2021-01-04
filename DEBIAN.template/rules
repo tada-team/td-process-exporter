@@ -6,5 +6,6 @@ export DH_VERBOSE = 1
 
 build:
 	cd usr/src/process-exporter
+	ls -lah
 	go build cmd/process-exporter/main.go
 	mv -fv main ../bin/process-exporter
