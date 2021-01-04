@@ -8,7 +8,7 @@ build:
 	cd usr/src/process-exporter && go build cmd/process-exporter/main.go
 	mv -fv usr/src/process-exporter/main usr/bin/process-exporter
 
-dh_golang:
+override_dh_golang:
 	echo "noop"
 
 override_dh_systemd_enable:
