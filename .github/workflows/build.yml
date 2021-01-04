@@ -42,8 +42,7 @@ jobs:
           for arch in amd64; do
             cd td-process-exporter_${{env.version}}_${arch}
             dpkg-buildpackage --no-sign --target-arch ${arch}
-            ls -lah ..
-            mv ../td-process-exporter_${{env.version}}.deb ../dist/td-process-exporter_${{env.version}}_${arch}.deb
+            mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
           done
           ls -lah dist
       - name: Try install
