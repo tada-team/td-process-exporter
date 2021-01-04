@@ -25,9 +25,9 @@ jobs:
           for arch in i386 amd64; do
             mkdir -p td-process-exporter_${{env.version}}_${arch}/usr/bin
             cp -rv etc td-process-exporter_${{env.version}}_${arch}/etc
-            cp -rv DEBIAN.template td-process-exporter_${{env.version}}_${arch}/DEBIAN
-            sed -i "s/%VERSION%/${{env.version}}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
-            sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/DEBIAN/*
+            cp -rv DEBIAN.template td-process-exporter_${{env.version}}_${arch}/debian
+            sed -i "s/%VERSION%/${{env.version}}/g" td-process-exporter_${{env.version}}_${arch}/debian/*
+            sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/debian/*
             ls -lah td-process-exporter_${{env.version}}_${arch}
           done
       - name: Go build
@@ -45,10 +45,7 @@ jobs:
             go build cmd/process-exporter/main.go
             mv -f main ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
-            echo "SKIP: dpkg-deb --build td-process-exporter_${{env.version}}_${arch}"
             cd td-process-exporter_${{env.version}}_${arch}
-            mv DEBIAN debian
-            ls -lah
             dpkg-buildpackage --no-sign
             mv td-process-exporter_${{env.version}}_${arch}.deb ../dist
           done
