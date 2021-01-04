@@ -39,11 +39,6 @@ jobs:
           sudo apt-get install -y devscripts debhelper dh-systemd
           mkdir -p dist
           for arch in amd64; do
-            cd process-exporter-master
-
-            go build cmd/process-exporter/main.go
-            mv -f main ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
-            cd ..
             cd td-process-exporter_${{env.version}}_${arch}
             dpkg-buildpackage --no-sign
             mv td-process-exporter_${{env.version}}_${arch}.deb ../dist
