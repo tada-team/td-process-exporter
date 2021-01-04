@@ -47,8 +47,9 @@ jobs:
             cd ..
             echo "SKIP: dpkg-deb --build td-process-exporter_${{env.version}}_${arch}"
             cd td-process-exporter_${{env.version}}_${arch}
+            mv DEBIAN debian
             ls -lah
-            dpkg-buildpackage
+            dpkg-buildpackage --no-sign
             mv td-process-exporter_${{env.version}}_${arch}.deb ../dist
           done
       - name: Try install
