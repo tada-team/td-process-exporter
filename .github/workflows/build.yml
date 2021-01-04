@@ -30,7 +30,7 @@ jobs:
             cp -rv DEBIAN.template td-process-exporter_${{env.version}}_${arch}/debian
             sed -i "s/%VERSION%/${{env.version}}/g" td-process-exporter_${{env.version}}_${arch}/debian/*
             sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/debian/*
-            cp -r process-exporter-master td-process-exporter_${{env.version}}_${arch}/src/process-exporter
+            cp -r process-exporter-master td-process-exporter_${{env.version}}_${arch}/usr/src/process-exporter
             ls -lah td-process-exporter_${{env.version}}_${arch}
           done
       - name: Go build
