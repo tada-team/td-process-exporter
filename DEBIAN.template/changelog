@@ -1,5 +1,5 @@
 td-process-exporter (%VERSION%); urgency=medium
 
- * github.com/tada-team/process-exporter build
+  * github.com/tada-team/process-exporter build
 
--- Tada.team <info@tada.team> Thu, 31 Dec 2020 00:00:00 +0300
+ -- Tada.team <info@tada.team> Thu, 31 Dec 2020 00:00:00 +0300
