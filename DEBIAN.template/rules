@@ -2,9 +2,9 @@
 export DH_VERBOSE = 1
 
 %:
-	dh $@ --with systemd
+	dh $@ --with=systemd --with=golang
 
 build:
-	ls -lah usr/src
-	go build usr/src/process-exporter/cmd/process-exporter/main.go
-	mv -f main process-exporter
+	cd usr/src/process-exporter
+	go build cmd/process-exporter/main.go
+	mv -fv main ../bin/process-exporter
