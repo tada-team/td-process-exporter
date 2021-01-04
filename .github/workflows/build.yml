@@ -22,7 +22,7 @@ jobs:
           unzip process-exporter.zip
       - name: Prepare template
         run: |
-          for arch in amd64; do
+          for arch in i386 amd64; do
             mkdir -p \
               td-process-exporter_${{env.version}}_${arch}/usr/bin \
               td-process-exporter_${{env.version}}_${arch}/usr/src
@@ -39,7 +39,7 @@ jobs:
         run: |
           set -ex
           mkdir -p dist
-          for arch in amd64; do
+          for arch in i386 amd64; do
             cd td-process-exporter_${{env.version}}_${arch}
             dpkg-buildpackage --no-sign --target-arch ${arch}
             mv td-process-exporter_${{env.version}}_${arch}.deb ../dist
