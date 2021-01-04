@@ -36,7 +36,7 @@ jobs:
       - name: Go build
         run: |
           set -ex
-          sudo apt-get install -y devscripts debhelper dh-systemd
+          sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
           mkdir -p dist
           for arch in amd64; do
             cd td-process-exporter_${{env.version}}_${arch}
