@@ -51,6 +51,7 @@ jobs:
         working-directory: dist
         run: |
           set -ex
+          sudo apt-get install -y dh-systemd
           sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
           echo "list units..."
           sudo systemctl list-unit-files
