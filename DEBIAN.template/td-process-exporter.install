@@ -1,1 +1,1 @@
-src/bin/* usr/bin
+src/process-exporter/process-exporter usr/bin/process-exporter
