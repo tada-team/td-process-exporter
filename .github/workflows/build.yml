@@ -51,6 +51,7 @@ jobs:
         run: |
           set -ex
           sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
+          echo "/etc/process-exporter:" && ls -lah /etc/process-exporter
           sudo systemctl status process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
