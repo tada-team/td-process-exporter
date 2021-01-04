@@ -1,4 +1,0 @@
-#!/bin/bash
-set -ex
-
-dh_installsystemd --name=td-process-exporter.service

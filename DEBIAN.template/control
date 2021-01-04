@@ -5,4 +5,4 @@ Priority: optional
 Architecture: %ARCH%
 Maintainer: Tada.team <info@tada.team>
 Description: custom github.com/tada-team/process-exporter build
-Depends: dh-systemd
+Build-Depends: debhelper (>=10), dh-systemd
