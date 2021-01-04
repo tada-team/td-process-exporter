@@ -7,5 +7,4 @@ Standards-Version: 3.9.4
 
 Package: td-process-exporter
 Architecture: %ARCH%
-Multi-Arch: same
 Description: custom github.com/tada-team/process-exporter build
