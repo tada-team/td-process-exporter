@@ -33,10 +33,11 @@ jobs:
             cp -r process-exporter-master td-process-exporter_${{env.version}}_${arch}/usr/src/process-exporter
             ls -lah td-process-exporter_${{env.version}}_${arch}
           done
+      - name: Build requirements
+        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
       - name: Go build
         run: |
           set -ex
-          sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
           mkdir -p dist
           for arch in amd64; do
             cd td-process-exporter_${{env.version}}_${arch}
