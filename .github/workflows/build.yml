@@ -47,6 +47,7 @@ jobs:
             cd ..
             echo "SKIP: dpkg-deb --build td-process-exporter_${{env.version}}_${arch}"
             cd td-process-exporter_${{env.version}}_${arch}
+            ls -lah
             debuild -us -uc
             mv td-process-exporter_${{env.version}}_${arch}.deb ../dist
           done
