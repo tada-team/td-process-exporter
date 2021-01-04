@@ -5,7 +5,5 @@ export DH_VERBOSE = 1
 	dh $@ --with=systemd --with=golang
 
 build:
-	cd usr/src/process-exporter
-	ls -lah
-	go build cmd/process-exporter/main.go
-	mv -fv main ../bin/process-exporter
+	cd usr/src/process-exporter && go build cmd/process-exporter/main.go
+	mv -fv usr/src/process-exporter/main usr/bin/process-exporter
