@@ -22,7 +22,7 @@ jobs:
           unzip process-exporter.zip
       - name: Prepare template
         run: |
-          for arch in i386 amd64; do
+          for arch in amd64; do
             mkdir -p \
               td-process-exporter_${{env.version}}_${arch}/usr/bin \
               td-process-exporter_${{env.version}}_${arch}/usr/src
@@ -38,7 +38,7 @@ jobs:
           set -ex
           sudo apt-get install -y devscripts debhelper dh-systemd
           mkdir -p dist
-          for arch in i386 amd64; do
+          for arch in amd64; do
             cd process-exporter-master
 
             go build cmd/process-exporter/main.go
