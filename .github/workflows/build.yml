@@ -43,10 +43,6 @@ jobs:
             cd td-process-exporter_${{env.version}}_${arch}
             dpkg-buildpackage --no-sign --target-arch ${arch}
             mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
-            echo "config:"
-            ls -lah etc/process-exporter/conf.yaml
-            echo "usr/bin:"
-            ls -lah usr/bin
             cd ..
           done
           ls -lah dist
