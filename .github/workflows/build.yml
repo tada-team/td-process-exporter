@@ -23,11 +23,14 @@ jobs:
       - name: Prepare template
         run: |
           for arch in i386 amd64; do
-            mkdir -p td-process-exporter_${{env.version}}_${arch}/usr/bin
+            mkdir -p \
+              td-process-exporter_${{env.version}}_${arch}/usr/bin \
+              td-process-exporter_${{env.version}}_${arch}/usr/src
             cp -rv etc td-process-exporter_${{env.version}}_${arch}/etc
             cp -rv DEBIAN.template td-process-exporter_${{env.version}}_${arch}/debian
             sed -i "s/%VERSION%/${{env.version}}/g" td-process-exporter_${{env.version}}_${arch}/debian/*
             sed -i "s/%ARCH%/${arch}/g" td-process-exporter_${{env.version}}_${arch}/debian/*
+            cp -r process-exporter-master td-process-exporter_${{env.version}}_${arch}/src/process-exporter
             ls -lah td-process-exporter_${{env.version}}_${arch}
           done
       - name: Go build
@@ -35,13 +38,9 @@ jobs:
           set -ex
           sudo apt-get install -y devscripts debhelper dh-systemd
           mkdir -p dist
-          for arch in i386; do
+          for arch in i386 amd64; do
             cd process-exporter-master
-            if [ "$arch" == "i386" ]; then
-              export GOARCH=386
-            else
-              export GOARCH="$arch"
-            fi
+
             go build cmd/process-exporter/main.go
             mv -f main ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..

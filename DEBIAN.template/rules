@@ -3,3 +3,13 @@ export DH_VERBOSE = 1
 
 %:
 	dh $@ --with systemd
+
+build:
+    ls -lah usr/src
+    if [ "%ARCH%" == "i386" ]; then
+        export GOARCH=386
+    else
+        export GOARCH="%ARCH%"
+    fi
+	go build usr/src/process-exporter/cmd/process-exporter/main.go
+	mv -f main process-exporter
