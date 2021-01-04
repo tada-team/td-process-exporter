@@ -34,7 +34,7 @@ jobs:
             ls -lah td-process-exporter_${{env.version}}_${arch}
           done
       - name: Build requirements
-        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
+        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang tree
       - name: Go build
         run: |
           set -ex
@@ -45,7 +45,7 @@ jobs:
             mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
             cd ..
           done
-          ls -lah dist
+          tree
       - name: Try install
         working-directory: dist
         run: |
