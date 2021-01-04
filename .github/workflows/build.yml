@@ -44,7 +44,8 @@ jobs:
             go build cmd/process-exporter/main.go
             mv -f main ../td-process-exporter_${{env.version}}_${arch}/usr/bin/process-exporter
             cd ..
-            dpkg-deb --build td-process-exporter_${{env.version}}_${arch}
+            echo "SKIP: dpkg-deb --build td-process-exporter_${{env.version}}_${arch}"
+            debuild -us -uc
             mv td-process-exporter_${{env.version}}_${arch}.deb dist
           done
       - name: Try install
