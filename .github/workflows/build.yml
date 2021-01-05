@@ -20,29 +20,30 @@ jobs:
         run: |
           curl -L -o process-exporter.zip https://github.com/tada-team/process-exporter/archive/master.zip
           unzip process-exporter.zip
+          rm process-exporter.zip
       - name: Prepare template
         run: |
           for arch in amd64; do
-            dest=td-process-exporter_${{env.version}}_${arch}
+            dest=td-process-exporter_1.0.0_${arch}
             mkdir -p ${dest}/usr/src ${dest}/usr/bin
             cp -rv DEBIAN.template ${dest}/debian
-            sed -i "s/%VERSION%/${{env.version}}/g" ${dest}/debian/*
+            cp -rv etc ${dest}/etc
+            sed -i "s/%VERSION%/1.0.0/g" ${dest}/debian/*
             sed -i "s/%ARCH%/${arch}/g" ${dest}/debian/*
-            cp -r etc ${dest}/debian/etc
             cp -r process-exporter-master ${dest}/usr/src/process-exporter
             ls -lah ${dest}
           done
           rm -rf process-exporter-master
       - name: Build requirements
-        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang tree
+        run: sudo apt-get install -y devscripts debhelper dh-systemd golang-go tree
       - name: Go build
         run: |
           set -ex
           mkdir -p dist
           for arch in amd64; do
-            cd td-process-exporter_${{env.version}}_${arch}
+            cd td-process-exporter_1.0.0_${arch}
             dpkg-buildpackage --no-sign --target-arch ${arch}
-            mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
+            mv ../td-process-exporter_1.0.0_${arch}.deb ../dist
             cd ..
           done
           tree
@@ -50,7 +51,7 @@ jobs:
         working-directory: dist
         run: |
           set -ex
-          sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
+          sudo dpkg -i td-process-exporter_1.0.0_amd64.deb
           echo "/etc/process-exporter:" && ls -lah /etc/process-exporter
           sudo systemctl status process-exporter
       - name: Install SSH Client
