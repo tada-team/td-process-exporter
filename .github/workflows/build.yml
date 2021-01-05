@@ -23,7 +23,7 @@ jobs:
           rm process-exporter.zip
       - name: Prepare template
         run: |
-          for arch in amd64; do
+          for arch in amd64 i386; do
             dest=td-process-exporter_${{env.version}}_${arch}
             mkdir -p ${dest}/usr/src ${dest}/usr/bin
             cp -rv DEBIAN.template ${dest}/debian
@@ -43,7 +43,7 @@ jobs:
         run: |
           set -ex
           mkdir -p dist
-          for arch in amd64; do
+          for arch in amd64 i386; do
             cd td-process-exporter_${{env.version}}_${arch}
             dpkg-buildpackage --no-sign --target-arch ${arch}
             mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
