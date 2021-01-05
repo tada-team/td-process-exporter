@@ -49,7 +49,6 @@ jobs:
             mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
             cd ..
           done
-          tree
       - name: Try install
         working-directory: dist
         run: |
