@@ -38,7 +38,9 @@ jobs:
           done
           rm -rf process-exporter-master
       - name: Build requirements
-        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
+        run: |
+          sudo dpkg --add-architecture amd64
+          sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
       - name: Go build
         run: |
           set -ex
