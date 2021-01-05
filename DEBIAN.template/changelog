@@ -1,4 +1,4 @@
-td-process-exporter (1.0.0) unstable; urgency=medium
+td-process-exporter (%VERSION%) unstable; urgency=medium
 
   * github.com/tada-team/process-exporter build
 
