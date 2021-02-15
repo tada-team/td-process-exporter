@@ -1,4 +1,5 @@
 Source: td-process-exporter
+Version: %VERSION%%DEB_VERSION%
 Section: admin
 Priority: optional
 Maintainer: Tada.team <info@tada.team>
