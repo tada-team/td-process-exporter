@@ -51,8 +51,9 @@ jobs:
       - name: Try install
         working-directory: dist
         run: |
-          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
-          sudo dpkg -i ${dest}.deb
+#          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
+#          sudo dpkg -i ${dest}.deb
+          sudo dpkg -i td-process-exporter_${{env.version}}_all.deb
           sudo systemctl status process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
