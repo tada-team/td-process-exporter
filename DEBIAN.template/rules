@@ -8,7 +8,6 @@ override_dh_auto_build:
 
 override_dh_install:
 	mkdir -p debian/process-exporter-%VERSION%/usr/bin
-	ls -lah
 	cp -v usr/src/process-exporter-%VERSION%/process-exporter debian/process-exporter-%VERSION%/usr/bin/process-exporter
 	dh_install
 
