@@ -41,7 +41,7 @@ jobs:
         run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
       - name: Build .deb
         run: |
-          dest=td-process-exporter_${{env.version}}${env.debVersion}
+          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
           dpkg-deb --build ${dest}
           mkdir -p dist
           mv ${dest}.deb dist
