@@ -4,12 +4,11 @@
 	dh $@ --with=systemd
 
 override_dh_auto_build:
-	tree && cd usr/local/src/td-process-exporter-%VERSION% && go build -o process-exporter cmd/process-exporter/main.go
-
-override_dh_install:
 	mkdir -p debian/usr/bin
-	cp -v usr/local/src/process-exporter-%VERSION%/process-exporter debian/usr/bin/process-exporter
-	dh_install
+	tree
+	ls -lah usr/local/src/td-process-exporter-%VERSION%
+	cd usr/local/src/td-process-exporter-%VERSION% && go build -o process-exporter cmd/process-exporter/main.go
+    cp -v usr/local/src/process-exporter-%VERSION%/process-exporter debian/usr/bin/process-exporter
 
 override_dh_systemd_enable:
 	dh_systemd_enable --name process-exporter
