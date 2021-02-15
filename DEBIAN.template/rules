@@ -4,6 +4,7 @@
 	dh $@ --with=systemd
 
 override_dh_auto_build:
+    ls -lag usr/src
 	cd usr/src/td-process-exporter-%VERSION% && go build -o process-exporter cmd/process-exporter/main.go
 
 override_dh_install:
