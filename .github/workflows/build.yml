@@ -29,14 +29,14 @@ jobs:
         run: |
             dest=td-process-exporter_${{env.version}}${{env.debVersion}}
             mkdir -p ${dest}/usr/src ${dest}/usr/bin
-            cp -rv DEBIAN.template ${dest}/DEBAIN
+            cp -rv DEBIAN.template ${dest}/debian
             cp -rv etc ${dest}/etc
             sed -i "s/%VERSION%/${{env.version}}/g" \
               ${dest}/DEBAIN/control \
               ${dest}/DEBAIN/changelog
             sed -i "s/%DEB_VERSION%/${{env.debVersion}}/g" \
-              ${dest}/DEBAIN/control \
-              ${dest}/DEBAIN/changelog
+              ${dest}/debian/control \
+              ${dest}/debian/changelog
       - name: Build requirements
         run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
       - name: Build .deb
