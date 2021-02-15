@@ -33,6 +33,7 @@ jobs:
             cp -rv etc ${dest}/etc
             sed -i "s/%VERSION%/${{env.version}}/g" \
               ${dest}/debian/control \
+              ${dest}/debian/rules \
               ${dest}/debian/changelog
             sed -i "s/%DEB_VERSION%/${{env.debVersion}}/g" \
               ${dest}/debian/control \
