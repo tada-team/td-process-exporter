@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 1
       - name: Download sources
         run: |
-          dest=td-process-exporter_${{env.version}}
+          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
           mkdir -p ${dest}/usr/local/src
           cd ${dest}/usr/local/src
           curl -L -o process-exporter-${{env.version}}.tar.gz https://github.com/tada-team/process-exporter/archive/v${{env.version}}.tar.gz
