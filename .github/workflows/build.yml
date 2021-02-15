@@ -46,12 +46,8 @@ jobs:
           dest=td-process-exporter_${{env.version}}${{env.debVersion}}
           mkdir -p dist
           cd ${dest}
-          tree
           dpkg-buildpackage --no-sign
           mv ../*.deb ../dist
-#          cat ${dest}/DEBIAN/control
-#          dpkg-deb --build ${dest}
-#          mv ${dest}.deb dist
       - name: Try install
         working-directory: dist
         run: |
