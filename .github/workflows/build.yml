@@ -50,8 +50,8 @@ jobs:
         run: |
           dest = td-process-exporter_${{env.version}}${{env.debVersion}}
           sudo dpkg -i ${dest}.deb
-#          echo "/etc/process-exporter:" && ls -lah /etc/process-exporter
           sudo systemctl status process-exporter
+      #          echo "/etc/process-exporter:" && ls -lah /etc/process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
         with:
