@@ -4,7 +4,6 @@ Priority: optional
 Maintainer: Tada.team <info@tada.team>
 Build-Depends: debhelper (>=10), dh-systemd, dh-golang
 Standards-Version: 3.9.4
-
 Package: td-process-exporter
-Architecture: all
+Architecture: amd64
 Description: custom github.com/tada-team/process-exporter build
