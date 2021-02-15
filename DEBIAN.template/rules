@@ -4,7 +4,7 @@
 	dh $@ --with=systemd
 
 override_dh_auto_build:
-	ls -lah usr/src && ls -lah /usr/local && cd usr/src/td-process-exporter-%VERSION% && go build -o process-exporter cmd/process-exporter/main.go
+	ls -lah usr/src && ls -lah /usr/local/src && cd usr/src/td-process-exporter-%VERSION% && go build -o process-exporter cmd/process-exporter/main.go
 
 override_dh_install:
 	mkdir -p debian/process-exporter-%VERSION%/usr/bin
