@@ -39,7 +39,7 @@ jobs:
               ${dest}/debian/control \
               ${dest}/debian/changelog
       - name: Build requirements
-        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
+        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang tree
       - name: Build .deb
         run: |
           set -ex
