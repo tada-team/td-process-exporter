@@ -46,9 +46,7 @@ jobs:
           dest=td-process-exporter_${{env.version}}${{env.debVersion}}
           mkdir -p dist
           cd ${dest}
-          ls -lah
           dpkg-buildpackage --no-sign
-          ls -lah
           mv ../*.deb ../dist
 #          cat ${dest}/DEBIAN/control
 #          dpkg-deb --build ${dest}
