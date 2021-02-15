@@ -1,6 +1,6 @@
 name: build
 env:
-  version: '1.0.2'
+  version: '0.7.2'
   debVersion: '+1'
 
 on:
@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 1
       - name: Download sources
         run: |
-          dest=td-process-exporterv_${{env.version}}
+          dest=td-process-exporter_${{env.version}}
           mkdir -p ${dest}/usr/local/src
           cd ${dest}/usr/local/src
           curl -L -o process-exporter-${{env.version}}.tar.gz https://github.com/tada-team/process-exporter/archive/v${{env.version}}.tar.gz
