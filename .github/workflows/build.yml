@@ -48,7 +48,7 @@ jobs:
       - name: Try install
         working-directory: dist
         run: |
-          dest = td-process-exporter_${{env.version}}${env.debVersion}
+          dest = td-process-exporter_${{env.version}}${{env.debVersion}}
           sudo dpkg -i ${dest}.deb
 #          echo "/etc/process-exporter:" && ls -lah /etc/process-exporter
 #          sudo systemctl status process-exporter
