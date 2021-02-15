@@ -3,12 +3,6 @@
 %:
 	dh $@ --with=systemd
 
-override_dh_auto_build:
-	ls -lah usr/local/src/process-exporter-%VERSION%
-	mkdir -p debian/usr/bin
-	cd usr/local/src/process-exporter-%VERSION% && go build -o process-exporter cmd/process-exporter/main.go
-	cp -v usr/local/src/process-exporter-%VERSION%/process-exporter debian/usr/bin/process-exporter
-
 override_dh_systemd_enable:
 	dh_systemd_enable --name process-exporter
 

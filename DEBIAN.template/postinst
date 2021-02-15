@@ -1,0 +1,8 @@
+#!/bin/bash
+set -ex
+
+cd /usr/local/src/process-exporter-%VERSION%
+go build -o process-exporter cmd/process-exporter/main.go
+mv process-exporter /usr/bin/process-exporter
+
+systemctl restart process-exporter.service
