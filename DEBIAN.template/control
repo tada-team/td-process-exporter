@@ -6,5 +6,5 @@ Build-Depends: debhelper (>=10), dh-systemd, dh-golang
 Standards-Version: 3.9.4
 
 Package: td-process-exporter
-Architecture: %ARCH%
+Architecture: allF
 Description: custom github.com/tada-team/process-exporter build
