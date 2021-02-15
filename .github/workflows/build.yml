@@ -42,7 +42,7 @@ jobs:
       - name: Build .deb
         run: |
           dest=td-process-exporter_${{env.version}}${{env.debVersion}}
-          ls -lah ${dest}/DEBIAN
+          cat ${dest}/DEBIAN/control
           dpkg-deb --build ${dest}
           mkdir -p dist
           mv ${dest}.deb dist
