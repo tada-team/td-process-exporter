@@ -42,13 +42,14 @@ jobs:
       - name: Build .deb
         run: |
           dest=td-process-exporter_${{env.version}}${{env.debVersion}}
+          ls -lah ${dest}
           dpkg-deb --build ${dest}
           mkdir -p dist
           mv ${dest}.deb dist
       - name: Try install
         working-directory: dist
         run: |
-          dest = td-process-exporter_${{env.version}}${{env.debVersion}}
+          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
           sudo dpkg -i ${dest}.deb
           sudo systemctl status process-exporter
       - name: Install SSH Client
