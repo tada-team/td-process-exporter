@@ -5,7 +5,7 @@ env:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, m1 ]
 
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ jobs:
         run: |
             dest=td-process-exporter_${{env.version}}${env.debVersion}
             mkdir -p ${dest}/usr/src ${dest}/usr/bin
-            cp -rv DEBIAN.template ${dest}/DEBAIN
+            cp -rv DEBIAN.template ${dest}/debian
             cp -rv etc ${dest}/etc
             sed -i "s/%VERSION%/${{env.version}}/g" \
               ${dest}/debian/control \
