@@ -50,6 +50,7 @@ jobs:
       - name: Try install
         working-directory: dist
         run: |
+          ls -lah
           sudo dpkg -i td-process-exporter_${{env.version}}${{env.debVersion}}.deb
           sudo systemctl status process-exporter
       - name: Install SSH Client
