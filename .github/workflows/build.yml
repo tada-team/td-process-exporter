@@ -46,7 +46,7 @@ jobs:
           mkdir -p dist
           cd ${dest}
           dpkg-buildpackage --no-sign
-          ls -lah
+          ls -lah ../
           mv ../*.deb ../dist
       - name: Try install
         working-directory: dist
