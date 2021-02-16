@@ -2,6 +2,7 @@
 set -ex
 
 ls -lah /usr/bin/
+ls -lah /usr/src/
 
 
 cd /usr/local/src/process-exporter-%VERSION%
