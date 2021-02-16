@@ -47,11 +47,11 @@ jobs:
           cd ${dest}
           dpkg-buildpackage --no-sign
           mv ../*.deb ../dist
+          cd ..
       - name: Try install
         working-directory: dist
         run: |
           sudo dpkg -i td-process-exporter_${{env.version}}_all.deb
-          ls -lah ..
           sudo systemctl status process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
