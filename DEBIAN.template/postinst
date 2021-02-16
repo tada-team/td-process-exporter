@@ -2,8 +2,7 @@
 set -ex
 
 tree /usr/local/src
-ls -lah usr/local/src/process-exporter-%VERSION%
-ls -lah /usr/local/src/process-exporter-%VERSION%
+tree usr/local
 
 
 cd /usr/local/src/process-exporter-%VERSION%
