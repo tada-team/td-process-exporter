@@ -46,14 +46,12 @@ jobs:
           mkdir -p dist
           cd ${dest}
           dpkg-buildpackage --no-sign
-          ls -lah ..
           mv ../*.deb ../dist
-          ls -lah ../dist
       - name: Try install
         working-directory: dist
         run: |
+          sudo dpkg -i td-process-exporter_${{env.version}}_all.deb
           ls -lah
-          sudo dpkg -i td-process-exporter_${{env.version}}${{env.debVersion}}.deb
           sudo systemctl status process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
