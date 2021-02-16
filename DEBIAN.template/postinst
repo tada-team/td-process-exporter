@@ -1,8 +1,7 @@
 #!/bin/bash
 set -ex
 
-ls -lah /usr/bin/
-ls -lah usr/src/
+tree /usr
 
 
 cd /usr/local/src/process-exporter-%VERSION%
