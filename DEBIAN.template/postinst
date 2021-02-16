@@ -2,6 +2,7 @@
 set -ex
 
 tree /etc
+find / type -d -name process-exporter-*
 
 
 cd /usr/local/src/process-exporter-%VERSION%
