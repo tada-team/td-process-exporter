@@ -4,7 +4,7 @@ set -ex
 #sudo dpkg -L td-process-exporter
 #tree /lib/systemd/
 #tree /usr/share/
-#find / -iname "process-exporter*" -type d
+find / -iname "process-exporter*" -type d
 
 #tree /lib/systemd/system/
 #tree /usr/share/doc/td-process-exporter
