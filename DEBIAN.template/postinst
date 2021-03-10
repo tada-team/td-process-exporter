@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
-sudo dpkg -L process-exporter
+sudo dpkg --list
+sudo dpkg -L td-process-exporter
 tree /usr/local/srs/
 
 cd process-exporter-%VERSION%/usr/local/src/process-exporter-%VERSION%
