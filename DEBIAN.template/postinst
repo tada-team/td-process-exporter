@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
-
+sleep 10
 #sudo dpkg -L td-process-exporter
 #tree /lib/systemd/
 #tree /usr/share/
