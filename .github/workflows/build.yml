@@ -36,6 +36,7 @@ jobs:
             ${dest}/debian/changelog
           sed -i "s/%DEB_VERSION%/${{env.debVersion}}/g" \
             ${dest}/debian/control \
+            ${dest}/debian/postinst \
             ${dest}/debian/changelog
       - name: Build requirements
         run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang tree
