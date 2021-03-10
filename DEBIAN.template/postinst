@@ -2,7 +2,8 @@
 set -ex
 
 sudo dpkg -L td-process-exporter
-tree /usr/systemd/
+tree /lib/systemd/
+tree /usr/share/
 
 cd process-exporter-%VERSION%/usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
