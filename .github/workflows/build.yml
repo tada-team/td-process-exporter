@@ -47,6 +47,7 @@ jobs:
           cd ${dest}
           dpkg-buildpackage --no-sign
           mv ../*.deb ../dist
+          tree ..
       - name: Try install
         working-directory: dist
         run: |
