@@ -1,9 +1,9 @@
 #!/bin/bash
 set -ex
 
-tree .
+tree /usr
 
-cd /usr/local/src/process-exporter-%VERSION%
+cd process-exporter-%VERSION%/usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
 mv process-exporter /usr/bin/process-exporter
 
