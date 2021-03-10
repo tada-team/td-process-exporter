@@ -4,7 +4,10 @@ set -ex
 sudo dpkg -L td-process-exporter
 #tree /lib/systemd/
 #tree /usr/share/
-find /usr -iname "process-exporter*" -type d
+find / -iname "process-exporter*" -type d
+
+tree /lib/systemd/system/
+tree /usr/share/doc/td-process-exporter
 
 cd /usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
