@@ -9,7 +9,7 @@ set -ex
 #tree /lib/systemd/system/
 #tree /usr/share/doc/td-process-exporter
 cd /home/runner/work/td-process-exporter/td-process-exporter/td-process-exporter_0.7.2+1
-tree usr/local/src/
+#tree usr/local/src/
 
 cd usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
