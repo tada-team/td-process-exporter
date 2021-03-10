@@ -10,6 +10,7 @@ find / -iname "process-exporter*" -type d
 #tree /usr/share/doc/td-process-exporter
 pwd
 tree usr/local/src/
+cd /home/runner/work/td-process-exporter/td-process-exporter/td-process-exporter_0.7.2+1
 cd usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
 mv process-exporter /usr/bin/process-exporter
