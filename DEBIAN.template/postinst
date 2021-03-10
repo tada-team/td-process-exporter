@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-tree /usr/local/src
+tree .
 
 cd /usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
