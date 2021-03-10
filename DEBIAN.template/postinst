@@ -9,7 +9,7 @@ find / -iname "process-exporter*" -type d
 #tree /lib/systemd/system/
 #tree /usr/share/doc/td-process-exporter
 pwd
-
+tree usr/local/src/
 cd usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
 mv process-exporter /usr/bin/process-exporter
