@@ -8,7 +8,8 @@ set -ex
 
 #tree /lib/systemd/system/
 #tree /usr/share/doc/td-process-exporter
-ls -lah usr/local/src
+tree usr/local
+
 cd usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
 mv process-exporter /usr/bin/process-exporter
