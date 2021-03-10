@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
-sudo dpkg --list
+
 sudo dpkg -L td-process-exporter
-tree /usr/local/srs/
+tree /usr/systemd/
 
 cd process-exporter-%VERSION%/usr/local/src/process-exporter-%VERSION%
 go build -o process-exporter cmd/process-exporter/main.go
