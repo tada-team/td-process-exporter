@@ -1,10 +1,11 @@
 name: build
 env:
-  version: '1.0.2'
+  version: '0.7.2'
+  debVersion: '+1'
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, m1 ]
 
   workflow_dispatch:
 
@@ -18,43 +19,40 @@ jobs:
           fetch-depth: 1
       - name: Download sources
         run: |
-          curl -L -o process-exporter.zip https://github.com/tada-team/process-exporter/archive/master.zip
-          unzip process-exporter.zip
-          rm process-exporter.zip
+          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
+          mkdir -p ${dest}/usr/local/src
+          cd ${dest}/usr/local/src
+          curl -L -o process-exporter-${{env.version}}.tar.gz https://github.com/tada-team/process-exporter/archive/v${{env.version}}.tar.gz
+          tar zvxf process-exporter-${{env.version}}.tar.gz
+          rm process-exporter-${{env.version}}.tar.gz
       - name: Prepare template
         run: |
-          for arch in amd64; do
-            dest=td-process-exporter_${{env.version}}_${arch}
-            mkdir -p ${dest}/usr/src ${dest}/usr/bin
-            cp -rv DEBIAN.template ${dest}/debian
-            cp -rv etc ${dest}/etc
-            sed -i "s/%VERSION%/${{env.version}}/g" \
-              ${dest}/debian/control \
-              ${dest}/debian/changelog
-            sed -i "s/%ARCH%/${arch}/g" \
-              ${dest}/debian/control
-            cp -r process-exporter-master ${dest}/usr/src/process-exporter
-            ls -lah ${dest}
-          done
-          rm -rf process-exporter-master
+          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
+          cp -rv DEBIAN.template ${dest}/debian
+          cp -rv etc ${dest}/etc
+          sed -i "s/%VERSION%/${{env.version}}/g" \
+            ${dest}/debian/control \
+            ${dest}/debian/postinst \
+            ${dest}/debian/changelog
+          sed -i "s/%DEB_VERSION%/${{env.debVersion}}/g" \
+            ${dest}/debian/control \
+            ${dest}/debian/postinst \
+            ${dest}/debian/changelog
       - name: Build requirements
-        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
-      - name: Go build
+        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang tree
+      - name: Build .deb
         run: |
           set -ex
+          dest=td-process-exporter_${{env.version}}${{env.debVersion}}
           mkdir -p dist
-          for arch in amd64; do
-            cd td-process-exporter_${{env.version}}_${arch}
-            dpkg-buildpackage --no-sign --target-arch ${arch}
-            mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
-            cd ..
-          done
+          cd ${dest}
+          dpkg-buildpackage --no-sign
+          mv ../*.deb ../dist
       - name: Try install
         working-directory: dist
         run: |
           set -ex
-          sudo dpkg -i td-process-exporter_${{env.version}}_amd64.deb
-          echo "/etc/process-exporter:" && ls -lah /etc/process-exporter
+          sudo dpkg -i td-process-exporter_${{env.version}}_all.deb
           sudo systemctl status process-exporter
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1

@@ -1,0 +1,18 @@
+#!/bin/bash
+set -ex
+#sleep 10
+#sudo dpkg -L td-process-exporter
+#tree /lib/systemd/
+#tree /usr/share/
+#find / -iname "process-exporter*" -type d
+
+#tree /lib/systemd/system/
+#tree /usr/share/doc/td-process-exporter
+cd /home/runner/work/td-process-exporter/td-process-exporter/td-process-exporter_%VERSION%%DEB_VERSION%
+#tree usr/local/src/
+
+cd usr/local/src/process-exporter-%VERSION%
+go build -o process-exporter cmd/process-exporter/main.go
+mv process-exporter /usr/bin/process-exporter
+
+systemctl restart process-exporter.service
