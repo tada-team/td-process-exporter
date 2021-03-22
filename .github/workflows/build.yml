@@ -23,7 +23,7 @@ jobs:
           rm process-exporter.zip
       - name: Prepare template
         run: |
-          for arch in amd64; do
+          for arch in 'amd64' 'arm64'; do
             dest=td-process-exporter_${{env.version}}_${arch}
             mkdir -p ${dest}/usr/src ${dest}/usr/bin
             cp -rv DEBIAN.template ${dest}/debian
@@ -38,14 +38,14 @@ jobs:
           done
           rm -rf process-exporter-master
       - name: Build requirements
-        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang
+        run: sudo apt-get install -y devscripts debhelper dh-systemd dh-golang binutils-aarch64-linux-gnu
       - name: Go build
         run: |
           set -ex
           mkdir -p dist
-          for arch in amd64; do
+          for arch in 'amd64' 'arm64'; do
             cd td-process-exporter_${{env.version}}_${arch}
-            dpkg-buildpackage --no-sign --target-arch ${arch}
+            env GOARCH=${arch} dpkg-buildpackage --no-sign --target-arch ${arch} --host-arch ${arch}
             mv ../td-process-exporter_${{env.version}}_${arch}.deb ../dist
             cd ..
           done
